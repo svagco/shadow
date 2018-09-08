@@ -9,18 +9,21 @@ const { getFilterDimensions } = require('./lib');
  * @param {number} [options.stdDeviation=27.5] The standard deviation for the blur. It will spread twice this distance in each direction. Default `27.5`.
  */
 const shadow = (options) => {
+  if (!options) throw new Error('Options must be given.')
   const {
     width,
     height,
     offsetY = 25,
     stdDeviation = 27.5,
   } = options
+  if (!width) throw new Error('The width must be given.')
+  if (!height) throw new Error('The height must be given.')
   const dims = getFilterDimensions(width, height, stdDeviation * 2, offsetY)
   return `<defs>
   <filter ${dims} id="shadow">
     <feOffset dx="0" dy="${offsetY}" in="SourceAlpha" result="so"/>
     <feGaussianBlur stdDeviation="${stdDeviation}" in="so" result="sb"/>
-    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"   type="matrix" in="sb" result="sm"/>
+    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>
     <feMerge>
       <feMergeNode in="sm"/>
       <feMergeNode in="SourceGraphic"/>
