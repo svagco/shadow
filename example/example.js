@@ -28,8 +28,8 @@ const rect = makeElement({
 })
 const image = svg({
   content: `${shadow}${rect}`,
-  height: 350,
-  width: 350,
+  height: 375,
+  width: 375,
   stretch: false,
 })
 writeFileSync('images/shadow.svg', image)

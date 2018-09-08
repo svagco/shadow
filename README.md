@@ -13,7 +13,7 @@ yarn add -E @svag/shadow
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
   * [`shadow(options: ShadowOptions)`](#shadowoptions-shadowoptions-void)
-    * [`BlurOptions`](#bluroptions)
+    * [`ShadowOptions`](#shadowoptions)
 - [TODO](#todo)
 - [Copyright](#copyright)
 
@@ -29,7 +29,7 @@ import shadow from '@svag/shadow'
 
 Creates a shadow for a window with given width and height.
 
-__<a name="bluroptions">`BlurOptions`</a>__: Options to generate macOS like blur.
+__<a name="shadowoptions">`ShadowOptions`</a>__: Options to generate macOS like  shadow using a blur filter.
 
 | Name | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
