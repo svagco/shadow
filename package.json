@@ -61,6 +61,7 @@
   },
   "homepage": "https://github.com/svagco/shadow#readme",
   "devDependencies": {
+    "@svag/lib": "1.0.0",
     "alamode": "1.4.0",
     "documentary": "1.11.0",
     "eslint-config-artdeco": "1.0.1",
