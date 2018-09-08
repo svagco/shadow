@@ -1,8 +1,8 @@
 # @svag/shadow
 
-[![npm version](https://badge.fury.io/js/@svag/shadow.svg)](https://npmjs.org/package/@svag/shadow)
+[![npm version](https://badge.fury.io/js/%40svag%2Fshadow.svg)](https://npmjs.org/package/@svag/shadow)
 
-`@svag/shadow` is A shadow from a window.
+`@svag/shadow` is a shadow from a window.
 
 ```sh
 yarn add -E @svag/shadow
@@ -12,7 +12,8 @@ yarn add -E @svag/shadow
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-  * [`shadow(arg1: string, arg2?: boolean)`](#mynewpackagearg1-stringarg2-boolean-void)
+  * [`shadow(options: ShadowOptions)`](#shadowoptions-shadowoptions-void)
+    * [`BlurOptions`](#bluroptions)
 - [TODO](#todo)
 - [Copyright](#copyright)
 
@@ -24,18 +25,45 @@ The package is available by importing its default function:
 import shadow from '@svag/shadow'
 ```
 
-### `shadow(`<br/>&nbsp;&nbsp;`arg1: string,`<br/>&nbsp;&nbsp;`arg2?: boolean,`<br/>`): void`
+### `shadow(`<br/>&nbsp;&nbsp;`options: ShadowOptions,`<br/>`): void`
 
-Call this function to get the result you want.
+Creates a shadow for a window with given width and height.
+
+__<a name="bluroptions">`BlurOptions`</a>__: Options to generate macOS like blur.
+
+| Name | Type | Description | Default |
+| ---- | ---- | ----------- | ------- |
+| __width*__ | _number_ | The width of the window. | - |
+| __height*__ | _number_ | The height of the window. | - |
+| offsetY | _number_ | The offset from the top of the window. | `25` |
+| stdDeviation | _number_ | The standard deviation for the blur. It will spread twice this distance in each direction. | `27.5` |
 
 ```js
-/* yarn example/ */
-import shadow from '@svag/shadow'
+import Shadow from '@svag/shadow'
 
-(async () => {
-  await shadow()
-})()
+const shadow = Shadow({
+  width: 250,
+  height: 250,
+})
+
+console.log(shadow)
 ```
+
+```svg
+<defs>
+  <filter x="-22%" y="-10%" width="144%" height="142%" id="shadow">
+    <feOffset dx="0" dy="25" in="SourceAlpha" result="so"/>
+    <feGaussianBlur stdDeviation="27.5" in="so" result="sb"/>
+    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"   type="matrix" in="sb" result="sm"/>
+    <feMerge>
+      <feMergeNode in="sm"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</defs>
+```
+
+![generated shadow](images/shadow.svg)
 
 ## TODO
 

@@ -1,0 +1,16 @@
+<types>
+  <type name="BlurOptions" desc="Options to generate macOS like blur.">
+    <prop number name="width">
+      The width of the window.
+    </prop>
+    <prop number name="height">
+      The height of the window.
+    </prop>
+    <prop number name="offsetY" default="25">
+      The offset from the top of the window.
+    </prop>
+    <prop number name="stdDeviation" default="27.5">
+      The standard deviation for the blur. It will spread twice this distance in each direction.
+    </prop>
+  </type>
+</types>
