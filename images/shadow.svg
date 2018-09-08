@@ -2,7 +2,7 @@
   <filter x="-22%" y="-10%" width="144%" height="142%" id="shadow">
     <feOffset dx="0" dy="25" in="SourceAlpha" result="so"/>
     <feGaussianBlur stdDeviation="27.5" in="so" result="sb"/>
-    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"   type="matrix" in="sb" result="sm"/>
+    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>
     <feMerge>
       <feMergeNode in="sm"/>
       <feMergeNode in="SourceGraphic"/>
