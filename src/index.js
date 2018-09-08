@@ -23,7 +23,7 @@ const shadow = (options) => {
   <filter ${dims} id="shadow">
     <feOffset dx="0" dy="${offsetY}" in="SourceAlpha" result="so"/>
     <feGaussianBlur stdDeviation="${stdDeviation}" in="so" result="sb"/>
-    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"   type="matrix" in="sb" result="sm"/>
+    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>
     <feMerge>
       <feMergeNode in="sm"/>
       <feMergeNode in="SourceGraphic"/>
