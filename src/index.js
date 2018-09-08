@@ -2,10 +2,10 @@ import { getFilterDimensions } from './lib'
 
 /**
  * Generate a blur filter for a window.
- * @param {BlurOptions} options Options to generate macOS like blur.
- * @param {number} [options.offsetY=25] The offset from the top of the window. Default `25`.
+ * @param {ShadowOptions} options Options to generate macOS like  shadow using a blur filter.
  * @param {number} options.width The width of the window.
  * @param {number} options.height The height of the window.
+ * @param {number} [options.offsetY=25] The offset from the top of the window. Default `25`.
  * @param {number} [options.stdDeviation=27.5] The standard deviation for the blur. It will spread twice this distance in each direction. Default `27.5`.
  */
 const shadow = (options) => {
@@ -31,10 +31,10 @@ const shadow = (options) => {
 
 /* documentary types/index.xml */
 /**
- * @typedef {Object} BlurOptions Options to generate macOS like blur.
- * @prop {number} [offsetY=25] The offset from the top of the window. Default `25`.
+ * @typedef {Object} ShadowOptions Options to generate macOS like  shadow using a blur filter.
  * @prop {number} width The width of the window.
  * @prop {number} height The height of the window.
+ * @prop {number} [offsetY=25] The offset from the top of the window. Default `25`.
  * @prop {number} [stdDeviation=27.5] The standard deviation for the blur. It will spread twice this distance in each direction. Default `27.5`.
  */
 

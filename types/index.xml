@@ -1,5 +1,5 @@
 <types>
-  <type name="BlurOptions" desc="Options to generate macOS like blur.">
+  <type name="ShadowOptions" desc="Options to generate macOS like  shadow using a blur filter.">
     <prop number name="width">
       The width of the window.
     </prop>
