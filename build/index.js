@@ -1,24 +1,42 @@
-const { debuglog } = require('util');
-
-const LOG = debuglog('@svag/shadow')
+const { getFilterDimensions } = require('./lib');
 
 /**
- * A shadow from a window.
- * @param {Config} config Configuration object.
- * @param {string} config.type The type.
+ * Generate a blur filter for a window.
+ * @param {ShadowOptions} options Options to generate macOS like  shadow using a blur filter.
+ * @param {number} options.width The width of the window.
+ * @param {number} options.height The height of the window.
+ * @param {number} [options.offsetY=25] The offset from the top of the window. Default `25`.
+ * @param {number} [options.stdDeviation=27.5] The standard deviation for the blur. It will spread twice this distance in each direction. Default `27.5`.
  */
-               async function shadow(config = {}) {
+const shadow = (options) => {
   const {
-    type,
-  } = config
-  LOG('@svag/shadow called with %s', type)
-  return type
+    width,
+    height,
+    offsetY = 25,
+    stdDeviation = 27.5,
+  } = options
+  const dims = getFilterDimensions(width, height, stdDeviation * 2, offsetY)
+  return `<defs>
+  <filter ${dims} id="shadow">
+    <feOffset dx="0" dy="${offsetY}" in="SourceAlpha" result="so"/>
+    <feGaussianBlur stdDeviation="${stdDeviation}" in="so" result="sb"/>
+    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"   type="matrix" in="sb" result="sm"/>
+    <feMerge>
+      <feMergeNode in="sm"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</defs>`
 }
 
+/* documentary types/index.xml */
 /**
- * @typedef {Object} Config
- * @property {string} type The type.
+ * @typedef {Object} ShadowOptions Options to generate macOS like  shadow using a blur filter.
+ * @prop {number} width The width of the window.
+ * @prop {number} height The height of the window.
+ * @prop {number} [offsetY=25] The offset from the top of the window. Default `25`.
+ * @prop {number} [stdDeviation=27.5] The standard deviation for the blur. It will spread twice this distance in each direction. Default `27.5`.
  */
 
-module.exports = shadow
+module.exports=shadow
 //# sourceMappingURL=index.js.map
