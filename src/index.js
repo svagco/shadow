@@ -9,12 +9,15 @@ import { getFilterDimensions } from './lib'
  * @param {number} [options.stdDeviation=27.5] The standard deviation for the blur. It will spread twice this distance in each direction. Default `27.5`.
  */
 const shadow = (options) => {
+  if (!options) throw new Error('Options must be given.')
   const {
     width,
     height,
     offsetY = 25,
     stdDeviation = 27.5,
   } = options
+  if (!width) throw new Error('The width must be given.')
+  if (!height) throw new Error('The height must be given.')
   const dims = getFilterDimensions(width, height, stdDeviation * 2, offsetY)
   return `<defs>
   <filter ${dims} id="shadow">
