@@ -30,6 +30,8 @@ import Shadow from '@svag/shadow'
 
 Creates a shadow for a window with given width and height. The `translate` string is also returned to add as a `transform` property to the window which drops the shadow, to make sure the shadow is not cropped.
 
+<img alt="Generated Shadow" src="https://raw.github.com/svagco/shadow/master/images/shadow.svg?sanitize=true">
+
 __<a name="shadowoptions">`ShadowOptions`</a>__: Options to generate macOS like  shadow using a blur filter.
 
 | Name | Type | Description | Default |
@@ -93,13 +95,11 @@ const image = svg({
 </svg>
 ```
 
-<img alt="Generated Shadow" src="https://raw.github.com/svagco/shadow/master/images/shadow.svg?sanitize=true">
-
 ## Direct VS Standalone
 
 The shadow has to be implemented as a separate element of the svg, and not part of the main window, because when embedded as in an `img` tag and resized, the quality will be lost on Mobile Safari. The image below shows what happens, and how this package is solving the problem.
 
-![compare shadows](images/compare.png)
+<img alt="Compare Images" src="https://raw.github.com/svagco/shadow/master/images/compare.png">
 
 ## TODO
 

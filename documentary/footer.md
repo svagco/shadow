@@ -3,7 +3,7 @@
 
 The shadow has to be implemented as a separate element of the svg, and not part of the main window, because when embedded as in an `img` tag and resized, the quality will be lost on Mobile Safari. The image below shows what happens, and how this package is solving the problem.
 
-![compare shadows](images/compare.png)
+<img alt="Compare Images" src="https://raw.github.com/svagco/shadow/master/images/compare.png">
 
 ## TODO
 
