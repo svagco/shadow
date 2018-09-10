@@ -34,28 +34,21 @@ const Shadow = (options) => {
         attributes: {
           dy: offsetY,
           in: 'SourceAlpha',
-          result: 'so',
+          result: 'o',
         },
       }),
       makeElement('feGaussianBlur', {
         attributes: {
           stdDeviation,
-          in: 'so',
-          result: 'sb',
+          in: 'o',
+          result: 'b',
         },
       }),
       makeElement('feColorMatrix', {
         attributes: {
           values: '0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0',
-          in: 'sb',
-          result: 'sm',
+          in: 'b',
         },
-      }),
-      makeElement('feMerge', {
-        content: [
-          '<feMergeNode in="sm"/>',
-          '<feMergeNode in="SourceGraphic"/>',
-        ],
       }),
     ],
   })
@@ -74,7 +67,6 @@ const Shadow = (options) => {
     attributes: {
       transform: translate,
       filter: 'url(#shadow)',
-      fill: 'none',
     },
     content: [
       defs,
