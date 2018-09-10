@@ -2,10 +2,12 @@ import { makeElement, rect } from '@svag/lib'
 import { getFilterDimensions } from './lib'
 
 /**
- * Generate a blur filter for a window.
+ * Generate a blur filter for a window. Returns a shadow element as a string, as well as the `translate` property to apply to the window element as the `transform` attribute.
  * @param {ShadowOptions} options Options to generate macOS like  shadow using a blur filter.
  * @param {number} options.width The width of the window.
  * @param {number} options.height The height of the window.
+ * @param {number} [options.rx=6] The `x` corner radius of a window which drops the shadow. Default `6`.
+ * @param {number} [options.ry=6] The `y` corner radius of a window which drops the shadow. Default `6`.
  * @param {number} [options.offsetY=25] The offset from the top of the window. Default `25`.
  * @param {number} [options.stdDeviation=27.5] The standard deviation for the blur. It will spread twice this distance in each direction. Default `27.5`.
  */
@@ -14,6 +16,8 @@ const Shadow = (options) => {
   const {
     width,
     height,
+    rx = 6,
+    ry = 6,
     offsetY = 25,
     stdDeviation = 27.5,
   } = options
@@ -41,10 +45,10 @@ const Shadow = (options) => {
     content: filter,
   })
   const body = rect({
-    height: 82,
-    width: 60,
-    rx: 6,
-    ry: 6,
+    height,
+    width,
+    rx,
+    ry,
     fill: 'white',
   })
   const translate = `translate(${stdDeviation * 2}, ${offsetY})`
@@ -67,6 +71,8 @@ const Shadow = (options) => {
  * @typedef {Object} ShadowOptions Options to generate macOS like  shadow using a blur filter.
  * @prop {number} width The width of the window.
  * @prop {number} height The height of the window.
+ * @prop {number} [rx=6] The `x` corner radius of a window which drops the shadow. Default `6`.
+ * @prop {number} [ry=6] The `y` corner radius of a window which drops the shadow. Default `6`.
  * @prop {number} [offsetY=25] The offset from the top of the window. Default `25`.
  * @prop {number} [stdDeviation=27.5] The standard deviation for the blur. It will spread twice this distance in each direction. Default `27.5`.
  */

@@ -35,32 +35,65 @@ __<a name="shadowoptions">`ShadowOptions`</a>__: Options to generate macOS like 
 | ---- | ---- | ----------- | ------- |
 | __width*__ | _number_ | The width of the window. | - |
 | __height*__ | _number_ | The height of the window. | - |
+| rx | _number_ | The `x` corner radius of a window which drops the shadow. | `6` |
+| ry | _number_ | The `y` corner radius of a window which drops the shadow. | `6` |
 | offsetY | _number_ | The offset from the top of the window. | `25` |
 | stdDeviation | _number_ | The standard deviation for the blur. It will spread twice this distance in each direction. | `27.5` |
 
 ```js
+import { svg, rect } from '@svag/lib'
 import Shadow from '@svag/shadow'
 
-const shadow = Shadow({
-  width: 250,
-  height: 250,
+// 0. DEFINE width and height of the window and its shadow.
+const width = 250
+const height = 250
+
+// 1. CREATE a shadow element.
+const { translate, shadow } = Shadow({
+  width,
+  height,
 })
 
-console.log(shadow)
+// 2. CREATE a window element to place above the shadow.
+const window = rect({
+  transform: translate,
+  width,
+  height,
+  rx: 6,
+  ry: 6,
+  stroke: 'grey',
+  fill: '#FFFFFF',
+})
+
+// 3. CREATE an svg image.
+const image = svg({
+  content: [shadow, window],
+  height: 375,
+  width: 375,
+  stretch: false,
+})
 ```
 
 ```svg
-<defs>
-  <filter x="-22%" y="-10%" width="144%" height="142%" id="shadow">
-    <feOffset dx="0" dy="25" in="SourceAlpha" result="so"/>
-    <feGaussianBlur stdDeviation="27.5" in="so" result="sb"/>
-    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>
-    <feMerge>
-      <feMergeNode in="sm"/>
-      <feMergeNode in="SourceGraphic"/>
-    </feMerge>
-  </filter>
-</defs>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0, 0, 375, 375" width="375px" height="375px">
+  <g transform="translate(55, 25)" filter="url(#shadow)" fill="none">
+    <defs>
+      <filter x="-22%" y="-10%" width="144%" height="142%" id="shadow">
+        <feOffset dx="0" dy="25" in="SourceAlpha" result="so"/>
+        <feGaussianBlur stdDeviation="27.5" in="so" result="sb"/>
+        <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>
+        <feMerge>
+          <feMergeNode in="sm"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <rect height="250" width="250" rx="6" ry="6" fill="white"/>
+  </g>
+  <rect transform="translate(55, 25)" width="250" height="250" rx="6" ry="6" stroke="grey"
+        fill="#FFFFFF"/>
+</svg>
 ```
 
 ![generated shadow](images/shadow.svg)

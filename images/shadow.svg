@@ -1,11 +1,19 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0, 0, 375, 375" width="375px" height="375px"><defs>
-  <filter x="-22%" y="-10%" width="144%" height="142%" id="shadow">
-    <feOffset dx="0" dy="25" in="SourceAlpha" result="so"/>
-    <feGaussianBlur stdDeviation="27.5" in="so" result="sb"/>
-    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>
-    <feMerge>
-      <feMergeNode in="sm"/>
-      <feMergeNode in="SourceGraphic"/>
-    </feMerge>
-  </filter>
-</defs><rect filter="url(#shadow)" transform="translate(55, 25)" x="0" y="0" width="250" height="250" rx="5" stroke="grey" stroke-width="2" fill="#FFFFFF"/></svg>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0, 0, 375, 375" width="375px" height="375px">
+  <g transform="translate(55, 25)" filter="url(#shadow)" fill="none">
+    <defs>
+      <filter x="-22%" y="-10%" width="144%" height="142%" id="shadow">
+        <feOffset dx="0" dy="25" in="SourceAlpha" result="so"/>
+        <feGaussianBlur stdDeviation="27.5" in="so" result="sb"/>
+        <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>
+        <feMerge>
+          <feMergeNode in="sm"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <rect height="250" width="250" rx="6" ry="6" fill="white"/>
+  </g>
+  <rect transform="translate(55, 25)" width="250" height="250" rx="6" ry="6" stroke="grey"
+        fill="#FFFFFF"/>
+</svg>
