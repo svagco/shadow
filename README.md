@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40svag%2Fshadow.svg)](https://npmjs.org/package/@svag/shadow)
 
-`@svag/shadow` is a shadow from a window.
+`@svag/shadow` is a shadow from a window. It is created as a separate element to make sure that when the `svg` image embedded in the `image` tag is resized, the actual content of the window will not be pixelated.
 
 ```sh
 yarn add -E @svag/shadow
@@ -12,8 +12,9 @@ yarn add -E @svag/shadow
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-  * [`shadow(options: ShadowOptions)`](#shadowoptions-shadowoptions-void)
+  * [`shadow(options: ShadowOptions): { translate: string, shadow: string }`](#shadowoptions-shadowoptions--translate-string-shadow-string-)
     * [`ShadowOptions`](#shadowoptions)
+- [Direct VS Standalone](#direct-vs-standalone)
 - [TODO](#todo)
 - [Copyright](#copyright)
 
@@ -22,12 +23,12 @@ yarn add -E @svag/shadow
 The package is available by importing its default function:
 
 ```js
-import shadow from '@svag/shadow'
+import Shadow from '@svag/shadow'
 ```
 
-### `shadow(`<br/>&nbsp;&nbsp;`options: ShadowOptions,`<br/>`): void`
+### `shadow(`<br/>&nbsp;&nbsp;`options: ShadowOptions,`<br/>`): { translate: string, shadow: string }`
 
-Creates a shadow for a window with given width and height.
+Creates a shadow for a window with given width and height. The `translate` string is also returned to add as a `transform` property to the window which drops the shadow, to make sure the shadow is not cropped.
 
 __<a name="shadowoptions">`ShadowOptions`</a>__: Options to generate macOS like  shadow using a blur filter.
 
@@ -35,39 +36,74 @@ __<a name="shadowoptions">`ShadowOptions`</a>__: Options to generate macOS like 
 | ---- | ---- | ----------- | ------- |
 | __width*__ | _number_ | The width of the window. | - |
 | __height*__ | _number_ | The height of the window. | - |
+| rx | _number_ | The `x` corner radius of a window which drops the shadow. | `6` |
+| ry | _number_ | The `y` corner radius of a window which drops the shadow. | `6` |
 | offsetY | _number_ | The offset from the top of the window. | `25` |
 | stdDeviation | _number_ | The standard deviation for the blur. It will spread twice this distance in each direction. | `27.5` |
 
 ```js
+import { svg, rect } from '@svag/lib'
 import Shadow from '@svag/shadow'
 
-const shadow = Shadow({
-  width: 250,
-  height: 250,
+// 0. DEFINE width and height of the window and its shadow.
+const width = 250
+const height = 250
+
+// 1. CREATE a shadow element.
+const { translate, shadow } = Shadow({
+  width,
+  height,
 })
 
-console.log(shadow)
+// 2. CREATE a window element to place above the shadow.
+const window = rect({
+  transform: translate,
+  width,
+  height,
+  rx: 6,
+  ry: 6,
+  stroke: 'grey',
+  fill: '#FFFFFF',
+})
+
+// 3. CREATE an svg image.
+const image = svg({
+  content: [shadow, window],
+  height: 375,
+  width: 375,
+  stretch: false,
+})
 ```
 
 ```svg
-<defs>
-  <filter x="-22%" y="-10%" width="144%" height="142%" id="shadow">
-    <feOffset dx="0" dy="25" in="SourceAlpha" result="so"/>
-    <feGaussianBlur stdDeviation="27.5" in="so" result="sb"/>
-    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>
-    <feMerge>
-      <feMergeNode in="sm"/>
-      <feMergeNode in="SourceGraphic"/>
-    </feMerge>
-  </filter>
-</defs>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0, 0, 375, 375" width="375px" height="375px">
+  <g transform="translate(55, 25)" filter="url(#shadow)">
+    <defs>
+      <filter x="-22%" y="-10%" width="144%" height="142%" id="shadow">
+        <feOffset dy="25" in="SourceAlpha" result="o"/>
+        <feGaussianBlur stdDeviation="27.5" in="o" result="b"/>
+        <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" in="b"/>
+      </filter>
+    </defs>
+    <rect height="250" width="250" rx="6" ry="6" fill="white"/>
+  </g>
+  <rect transform="translate(55, 25)" width="250" height="250" rx="6" ry="6" stroke="grey"
+        fill="#FFFFFF"/>
+</svg>
 ```
 
-![generated shadow](images/shadow.svg)
+<img alt="Generated Shadow" src="https://raw.github.com/svagco/shadow/master/images/shadow.svg?sanitize=true">
+
+## Direct VS Standalone
+
+The shadow has to be implemented as a separate element of the svg, and not part of the main window, because when embedded as in an `img` tag and resized, the quality will be lost on Mobile Safari. The image below shows what happens, and how this package is solving the problem.
+
+![compare shadows](images/compare.png)
 
 ## TODO
 
-- [ ] Add a new item to the todo list.
+- [ ] Add an `offsetX` property to the shadow.
 
 ## Copyright
 

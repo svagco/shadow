@@ -4,16 +4,16 @@
 The package is available by importing its default function:
 
 ```js
-import shadow from '@svag/shadow'
+import Shadow from '@svag/shadow'
 ```
 
-```### shadow
+```### shadow => { translate: string, shadow: string }
 [
   ["options", "ShadowOptions"]
 ]
 ```
 
-Creates a shadow for a window with given width and height.
+Creates a shadow for a window with given width and height. The `translate` string is also returned to add as a `transform` property to the window which drops the shadow, to make sure the shadow is not cropped.
 
 %TYPEDEF types/index.xml%
 
@@ -21,4 +21,4 @@ Creates a shadow for a window with given width and height.
 
 %FORK-svg example example/example%
 
-![generated shadow](images/shadow.svg)
+<img alt="Generated Shadow" src="https://raw.github.com/svagco/shadow/master/images/shadow.svg?sanitize=true">

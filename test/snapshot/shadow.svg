@@ -1,11 +1,10 @@
-<defs>
-  <filter x="-14%" y="-7%" width="128%" height="127%" id="shadow">
-    <feOffset dx="0" dy="25" in="SourceAlpha" result="so"/>
-    <feGaussianBlur stdDeviation="27.5" in="so" result="sb"/>
-    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>
-    <feMerge>
-      <feMergeNode in="sm"/>
-      <feMergeNode in="SourceGraphic"/>
-    </feMerge>
-  </filter>
-</defs>
+<g transform="translate(55, 25)" filter="url(#shadow)">
+  <defs>
+    <filter x="-14%" y="-7%" width="128%" height="127%" id="shadow">
+      <feOffset dy="25" in="SourceAlpha" result="o"/>
+      <feGaussianBlur stdDeviation="27.5" in="o" result="b"/>
+      <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" in="b"/>
+    </filter>
+  </defs>
+  <rect height="400" width="400" rx="6" ry="6" fill="white"/>
+</g>

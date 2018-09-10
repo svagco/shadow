@@ -6,6 +6,12 @@
     <prop number name="height">
       The height of the window.
     </prop>
+    <prop number name="rx" default="6">
+      The `x` corner radius of a window which drops the shadow.
+    </prop>
+    <prop number name="ry" default="6">
+      The `y` corner radius of a window which drops the shadow.
+    </prop>
     <prop number name="offsetY" default="25">
       The offset from the top of the window.
     </prop>

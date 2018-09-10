@@ -22,14 +22,13 @@ export const getFilterDimensions = (w, h, b2, blurOffsetY) => {
   const fw = 100 + (fx * 2)
   const fh = 100 + (getPercent(hf + oyf)) + fy
 
-  const attrs = [
-    `x="-${fx}%"`,
-    `y="-${fy}%"`,
-    `width="${fw}%"`,
-    `height="${fh}%"`,
-  ]
-  const s = attrs.join(' ')
-  return s
+  const attrs = {
+    x: `-${fx}%`,
+    y: `-${fy}%`,
+    width: `${fw}%`,
+    height: `${fh}%`,
+  }
+  return attrs
 }
 
 const getPercent = (x) => {
