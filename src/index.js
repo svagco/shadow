@@ -30,9 +30,27 @@ const Shadow = (options) => {
       id: 'shadow',
     },
     content: [
-      `<feOffset dx="0" dy="${offsetY}" in="SourceAlpha" result="so"/>`,
-      `<feGaussianBlur stdDeviation="${stdDeviation}" in="so" result="sb"/>`,
-      '<feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>',
+      makeElement('feOffset', {
+        attributes: {
+          dy: offsetY,
+          in: 'SourceAlpha',
+          result: 'so',
+        },
+      }),
+      makeElement('feGaussianBlur', {
+        attributes: {
+          stdDeviation,
+          in: 'so',
+          result: 'sb',
+        },
+      }),
+      makeElement('feColorMatrix', {
+        attributes: {
+          values: '0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0',
+          in: 'sb',
+          result: 'sm',
+        },
+      }),
       makeElement('feMerge', {
         content: [
           '<feMergeNode in="sm"/>',

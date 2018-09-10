@@ -1,9 +1,9 @@
 <g transform="translate(55, 25)" filter="url(#shadow)" fill="none">
   <defs>
     <filter x="-14%" y="-7%" width="128%" height="127%" id="shadow">
-      <feOffset dx="0" dy="25" in="SourceAlpha" result="so"/>
+      <feOffset dy="25" in="SourceAlpha" result="so"/>
       <feGaussianBlur stdDeviation="27.5" in="so" result="sb"/>
-      <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>
+      <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" in="sb" result="sm"/>
       <feMerge>
         <feMergeNode in="sm"/>
         <feMergeNode in="SourceGraphic"/>
