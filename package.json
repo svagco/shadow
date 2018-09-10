@@ -19,7 +19,8 @@
     "example/": "yarn e example/example.js"
   },
   "files": [
-    "build"
+    "build",
+    "types"
   ],
   "repository": {
     "type": "git",
