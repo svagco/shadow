@@ -16,9 +16,9 @@
   dependencies:
     restream "3.1.1"
 
-"@svag/lib@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@svag/lib/-/lib-1.0.0.tgz#45e439c9b361fbe8307299f99f5e937390f2e510"
+"@svag/lib@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@svag/lib/-/lib-2.0.0.tgz#8cf60690eed5d361eb8fad482592504a71335292"
 
 "@wrote/ensure-path@1.0.2":
   version "1.0.2"

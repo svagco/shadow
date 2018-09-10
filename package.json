@@ -61,12 +61,14 @@
   },
   "homepage": "https://github.com/svagco/shadow#readme",
   "devDependencies": {
-    "@svag/lib": "1.0.0",
     "alamode": "1.4.0",
     "documentary": "1.11.0",
     "eslint-config-artdeco": "1.0.1",
     "snapshot-context": "2.0.4",
     "yarn-s": "1.1.0",
     "zoroaster": "3.0.0"
+  },
+  "dependencies": {
+    "@svag/lib": "2.0.0"
   }
 }
