@@ -1,7 +1,7 @@
 
 ## TODO
 
-- [ ] Add a new item to the todo list.
+- [ ] Add an `offsetX` property to the shadow.
 
 ## Copyright
 

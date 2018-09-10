@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40svag%2Fshadow.svg)](https://npmjs.org/package/@svag/shadow)
 
-`@svag/shadow` is a shadow from a window.
+`@svag/shadow` is a shadow from a window. It is created as a separate element to make sure that when the `svg` image embedded in the `image` tag is resized, the actual content of the window will not be pixelated.
 
 ```sh
 yarn add -E @svag/shadow
@@ -12,7 +12,7 @@ yarn add -E @svag/shadow
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-  * [`shadow(options: ShadowOptions)`](#shadowoptions-shadowoptions-void)
+  * [`shadow(options: ShadowOptions): { translate: string, shadow: string }`](#shadowoptions-shadowoptions--translate-string-shadow-string-)
     * [`ShadowOptions`](#shadowoptions)
 - [TODO](#todo)
 - [Copyright](#copyright)
@@ -22,12 +22,12 @@ yarn add -E @svag/shadow
 The package is available by importing its default function:
 
 ```js
-import shadow from '@svag/shadow'
+import Shadow from '@svag/shadow'
 ```
 
-### `shadow(`<br/>&nbsp;&nbsp;`options: ShadowOptions,`<br/>`): void`
+### `shadow(`<br/>&nbsp;&nbsp;`options: ShadowOptions,`<br/>`): { translate: string, shadow: string }`
 
-Creates a shadow for a window with given width and height.
+Creates a shadow for a window with given width and height. The `translate` string is also returned to add as a `transform` property to the window which drops the shadow, to make sure the shadow is not cropped.
 
 __<a name="shadowoptions">`ShadowOptions`</a>__: Options to generate macOS like  shadow using a blur filter.
 
@@ -80,9 +80,9 @@ const image = svg({
   <g transform="translate(55, 25)" filter="url(#shadow)" fill="none">
     <defs>
       <filter x="-22%" y="-10%" width="144%" height="142%" id="shadow">
-        <feOffset dx="0" dy="25" in="SourceAlpha" result="so"/>
+        <feOffset dy="25" in="SourceAlpha" result="so"/>
         <feGaussianBlur stdDeviation="27.5" in="so" result="sb"/>
-        <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="sb" result="sm"/>
+        <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" in="sb" result="sm"/>
         <feMerge>
           <feMergeNode in="sm"/>
           <feMergeNode in="SourceGraphic"/>
@@ -100,7 +100,7 @@ const image = svg({
 
 ## TODO
 
-- [ ] Add a new item to the todo list.
+- [ ] Add an `offsetX` property to the shadow.
 
 ## Copyright
 
