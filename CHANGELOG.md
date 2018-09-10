@@ -1,5 +1,9 @@
 ## 11 September 2018
 
+### 2.0.1
+
+- [doc] Move the image upwards, absolute compare image URL.
+
 ### 2.0.0
 
 - [feature] Implement as a standalone element and return translate (**breaking**), and show the comparison.
