@@ -14,6 +14,7 @@ yarn add -E @svag/shadow
 - [API](#api)
   * [`shadow(options: ShadowOptions): { translate: string, shadow: string }`](#shadowoptions-shadowoptions--translate-string-shadow-string-)
     * [`ShadowOptions`](#shadowoptions)
+- [Direct VS Standalone](#direct-vs-standalone)
 - [TODO](#todo)
 - [Copyright](#copyright)
 
@@ -92,7 +93,13 @@ const image = svg({
 </svg>
 ```
 
-![generated shadow](images/shadow.svg)
+<img alt="Generated Shadow" src="https://raw.github.com/svagco/shadow/master/images/shadow.svg?sanitize=true">
+
+## Direct VS Standalone
+
+The shadow has to be implemented as a separate element of the svg, and not part of the main window, because when embedded as in an `img` tag and resized, the quality will be lost on Mobile Safari. The image below shows what happens, and how this package is solving the problem.
+
+![compare shadows](images/compare.png)
 
 ## TODO
 
