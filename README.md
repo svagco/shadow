@@ -77,16 +77,12 @@ const image = svg({
 ```svg
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0, 0, 375, 375" width="375px" height="375px">
-  <g transform="translate(55, 25)" filter="url(#shadow)" fill="none">
+  <g transform="translate(55, 25)" filter="url(#shadow)">
     <defs>
       <filter x="-22%" y="-10%" width="144%" height="142%" id="shadow">
-        <feOffset dy="25" in="SourceAlpha" result="so"/>
-        <feGaussianBlur stdDeviation="27.5" in="so" result="sb"/>
-        <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" in="sb" result="sm"/>
-        <feMerge>
-          <feMergeNode in="sm"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
+        <feOffset dy="25" in="SourceAlpha" result="o"/>
+        <feGaussianBlur stdDeviation="27.5" in="o" result="b"/>
+        <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" in="b"/>
       </filter>
     </defs>
     <rect height="250" width="250" rx="6" ry="6" fill="white"/>
