@@ -1,6 +1,6 @@
 {
   "name": "@svag/shadow",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A shadow from a window.",
   "main": "build",
   "scripts": {
