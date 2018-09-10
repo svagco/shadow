@@ -62,7 +62,9 @@ const Shadow = (options) => {
     ry,
     fill: 'white',
   })
-  const translate = `translate(${stdDeviation * 2}, ${offsetY})`
+  const translateX = stdDeviation * 2
+  const translateY = offsetY
+  const translate = `translate(${translateX}, ${translateY})`
   const shadow = makeElement('g', {
     attributes: {
       transform: translate,
@@ -73,7 +75,7 @@ const Shadow = (options) => {
       body,
     ],
   })
-  return { translate, shadow }
+  return { translate, shadow, translateX, translateY }
 }
 
 /* documentary types/index.xml */
