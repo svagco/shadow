@@ -1,30 +1,30 @@
 import { equal, throws } from 'zoroaster/assert'
 import SnapshotContext from 'snapshot-context'
 import Context from '../context'
-import shadow from '../../src'
+import Shadow from '../../src'
 
 /** @type {Object.<string, (c: Context, s: SnapshotContext)>} */
 const T = {
   context: [Context, SnapshotContext],
   'is a function'() {
-    equal(typeof shadow, 'function')
+    equal(typeof Shadow, 'function')
   },
   async 'throws an error when no options are given'() {
     await throws({
-      fn: shadow,
+      fn: Shadow,
       message: 'Options must be given.',
     })
   },
   async 'throws an error when no width is given'() {
     await throws({
-      fn: shadow,
+      fn: Shadow,
       args: [{}],
       message: 'The width must be given.',
     })
   },
   async 'throws an error when no height is given'() {
     await throws({
-      fn: shadow,
+      fn: Shadow,
       args: [{ width: 500 }],
       message: 'The height must be given.',
     })
@@ -33,8 +33,9 @@ const T = {
     { SNAPSHOT_DIR }, { setDir, test },
   ) {
     setDir(SNAPSHOT_DIR)
-    const t = shadow({ width: 400, height: 400 })
-    await test('shadow.svg', t)
+    const { translate, shadow } = Shadow({ width: 400, height: 400 })
+    equal(translate, 'translate(55, 25)')
+    await test('shadow.svg', shadow)
   },
 }
 
